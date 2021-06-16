@@ -1,6 +1,7 @@
 //detect click of mouse
 function mouseClick(){
     makeSound(this.innerHTML);
+    buttonAnimation(this.innerHTML);
 }
 
 //add event listener to all drums of click to mouseClick function
@@ -11,6 +12,7 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++){
 //add event listener to the whole document to detect for key press and call the function which calls makeSound function
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
+    buttonAnimation(event.key);
     // console.log(event);
 })
 //function which is parameter for higher order function is called callback function.
@@ -49,4 +51,11 @@ function makeSound(key){
         default:
             break;
     }
+}
+
+function buttonAnimation(key){
+    document.querySelector("." + key).classList.add("pressed");
+    setTimeout(function(){
+        document.querySelector("." + key).classList.remove("pressed");
+    }, 150);
 }
